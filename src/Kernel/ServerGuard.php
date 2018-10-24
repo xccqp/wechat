@@ -125,6 +125,7 @@ class ServerGuard
                 $this->getToken(),
                 $this->app['request']->get('timestamp'),
                 $this->app['request']->get('nonce'),
+                $this->app['request']->getContent(),//开放平台签名验证时需要加上加密消息体
             ])) {
             throw new BadRequestException('Invalid request signature.', 400);
         }
